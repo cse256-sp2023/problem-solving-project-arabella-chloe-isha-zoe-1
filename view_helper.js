@@ -515,10 +515,10 @@ function get_explanation_text(explanation) {
 //---- some universal HTML set-up so you don't have to do it in each wrapper.html ----
 $('#filestructure').css({
     'display':'inline-block',
-    'width':'49%',
+    'width':'80%',
     'vertical-align': 'top'
 })
-$('#filestructure').after('<div id="sidepanel" style="display:inline-block;width:49%"></div>')
+$('#filestructure').after('<div id="sidepanel" style="display:inline-block;width:80%"></div>')
 
 
 // Added functions
