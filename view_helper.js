@@ -519,3 +519,28 @@ $('#filestructure').css({
     'vertical-align': 'top'
 })
 $('#filestructure').after('<div id="sidepanel" style="display:inline-block;width:49%"></div>')
+
+
+// Added functions
+
+// pass in the element?
+function get_folder_description(name){
+    return "Make permissions changes for " + name;
+}
+
+function get_folder_or_file_description(headername) {
+    let text = "Make permissions changes for "
+    switch(headername) {
+        case "/C_header":
+          return text + "all documents"
+          break;
+        case "/C/presentation_documents_header":
+          return text + "all presentation documents"
+          break;
+        case "/C/p/C/presentation_documents/important_file.txt_permbuttonresentation_documents/important_header":
+          return text + "all presentation documents"
+          break;
+        default:
+          return ""
+      }
+}
