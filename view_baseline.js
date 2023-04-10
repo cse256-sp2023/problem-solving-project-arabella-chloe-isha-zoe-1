@@ -71,7 +71,6 @@ cant_remove_dialog = define_new_dialog('cant_remove_inherited_dialog', 'Security
             id: "continue-remove-button",
             click: function() {
                 let filepath = perm_dialog.attr('filepath');
-                console.log(filepath);
                 let file_obj = path_to_file[filepath];
                 convert_parent_permissions(file_obj);
                 let username = file_permission_users.attr('selected_item')
@@ -83,6 +82,7 @@ cant_remove_dialog = define_new_dialog('cant_remove_inherited_dialog', 'Security
                 file_permission_users.find('.ui-selected').remove()
                 file_permission_users.unselect() // clear user selection
 
+                $('#adv_perm_inheritance').prop('checked');
                 // Finally, close this dialog:
                 $( this ).dialog( "close" );
             }
