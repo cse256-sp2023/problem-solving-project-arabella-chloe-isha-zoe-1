@@ -66,20 +66,40 @@ perm_add_user_select.find('span').hide()// Cheating a bit - just show the button
 // Make a dialog which shows up when they're not allowed to remove that user from that file (because of inheritance)
 cant_remove_dialog = define_new_dialog('cant_remove_inherited_dialog', 'Security', {
     buttons: {
-        OK: {
-            text: "OK",
+        CONTINUE: {
+            text: "CONTINUE",
+            id: "continue-remove-button",
+            click: function() {
+                let filepath = perm_dialog.attr('filepath');
+                console.log(filepath);
+                let file_obj = path_to_file[filepath];
+                convert_parent_permissions(file_obj);
+                let username = file_permission_users.attr('selected_item')
+
+                // Remove all the permissions:
+                remove_all_perms_for_user(path_to_file[filepath], all_users[username]) 
+
+                // Update the UI to show that it's been removed:
+                file_permission_users.find('.ui-selected').remove()
+                file_permission_users.unselect() // clear user selection
+
+                // Finally, close this dialog:
+                $( this ).dialog( "close" );
+            }
+        },
+        CANCEL: {
+            text: "CANCEL",
             id: "cant-remove-ok-button",
             click: function() {
                 $( this ).dialog( "close" );
             }
-        }
+        },
     }
 })
 cant_remove_dialog.html(`
 <div id="cant_remove_text">
-    You can't remove <span id="cant_remove_username_1" class = "cant_remove_username"></span> because this object is inheriting permissions from 
-    its parent. To remove <span id="cant_remove_username_2" class = "cant_remove_username"></span>, you must prevent this object from inheriting permissions.
-    Turn off the option for inheriting permissions, and then try removing <span id="cant_remove_username_3" class = "cant_remove_username"></span>  again.
+This object is inheriting permissions from 
+    its parent. Select 'Continue' to convert the inherited permissions of this object to explicit permissions and remove <span id="cant_remove_username_1" class = "cant_remove_username"></span>.
 </div>`)
 
 // Make a confirmation "are you sure you want to remove?" dialog
