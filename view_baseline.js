@@ -100,6 +100,9 @@ cant_remove_dialog.html(`
 <div id="cant_remove_text">
 This object is inheriting permissions from 
     its parent. Select 'Continue' to convert the inherited permissions of this object to explicit permissions and remove <b>ALL</b> of <span id="cant_remove_username_1" class = "cant_remove_username"></span>'s permissions for this object.
+</div>
+<div id="cant_remove_alternative">
+    If you do not want to remove all of the permissions, click CANCEL and then go to the advanced settings and turn off inherited permissions. Then go back to the main menu for this object and make the changes for the specific permissions you desire.
 </div>`)
 
 // Make a confirmation "are you sure you want to remove?" dialog
